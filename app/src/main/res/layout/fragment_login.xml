@@ -4,6 +4,9 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+
         <variable
             name="viewModel"
             type="com.mnaik.animatedauthenticationscreens.viewModel.LoginViewModel" />
@@ -163,14 +166,29 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_26sdp"
                     android:background="@drawable/login_btn_background"
+                    android:onClick="@{() -> viewModel.userLogin()}"
                     android:text="@string/login"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_12ssp"
+                    android:visibility="@{viewModel.mDataLoading ? View.INVISIBLE : View.VISIBLE}"
                     app:layout_constrainedWidth="true"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/pass_et_layout" />
+
+                <com.mnaik.animatedauthenticationscreens.ui.CustomProgress
+                    android:layout_width="@dimen/_39sdp"
+                    android:layout_height="@dimen/_39sdp"
+                    android:visibility="@{viewModel.mDataLoading ? View.VISIBLE : View.GONE}"
+                    app:inner_color="#FFFFFF"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/pass_et_layout"
+                    app:mid_color="#FFFFFF"
+                    app:outer_color="#FFFFFF" />
+
 
                 <TextView
                     android:id="@+id/tv_forgot"
@@ -189,6 +207,19 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateDrawable="@drawable/custom_progress"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
